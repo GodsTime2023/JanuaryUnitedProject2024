@@ -68,9 +68,6 @@ namespace JanuaryUnitedProject2024.Tests
         [Test]
         public void POMBasics()
         {
-            //Git repository - Code or project is stored - Code base
-            //Different types - 1. Git 2. Azure Devops 3. Jenkins 4. Sauce Lab 5. Git Lab
-
         }
     }
 }
