@@ -16,7 +16,5 @@ namespace JanuaryUnitedProject2024.Config
         }
 
         public string GetData(string key) => _config[key]!;
-        public string ReadData(string key) => 
-            _config.GetSection("userCredential:Name").Value!;
     }
 }
