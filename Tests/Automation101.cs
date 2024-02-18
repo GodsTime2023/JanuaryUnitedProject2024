@@ -1,5 +1,6 @@
 ﻿using FluentAssertions;
 using JanuaryUnitedProject2024.Hooks;
+using JanuaryUnitedProject2024.Pages;
 using JanuaryUnitedProject2024.ReusableMethods;
 using OpenQA.Selenium;
 
@@ -68,6 +69,22 @@ namespace JanuaryUnitedProject2024.Tests
         [Test]
         public void POMBasics()
         {
+            LandingPage landingPage = new LandingPage(driver); //Object of the class
+            landingPage.ClickConsent();
+            landingPage.ClickBookstoreLocator();
+
+            BooksPage booksPage = new BooksPage(driver);
+            booksPage.ClickLoginButton();
+
+            LoginPage loginPage = new LoginPage(driver);
+            loginPage.EnterUserName("TestUser");
+            loginPage.EnterPassword("Password01!");
+            loginPage.ClickLoginbutton();
+            driver.Manage().Timeouts().ImplicitWait =
+            TimeSpan.FromSeconds(double.Parse(Enviroment.TimeOut));
+
+            var user = booksPage.GetUserdisplayName();
+            Assert.That(user.Equals("TestUser"), Is.True);
         }
     }
 }

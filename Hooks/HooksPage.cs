@@ -17,7 +17,7 @@ public class HooksPage : MyObjects
     {
         driver = ChooseBrowser(browserType.Chrome);
         //driver.Navigate().GoToUrl(Enviroment.url);
-        driver.Navigate().GoToUrl(js.GetData("env:demoqaurl"));
+        driver.Navigate().GoToUrl(js.GetData("env:demoqaurl2"));
         driver.Manage().Timeouts().ImplicitWait =
             TimeSpan.FromSeconds(double.Parse(Enviroment.TimeOut));
         driver.Manage().Timeouts().PageLoad =
