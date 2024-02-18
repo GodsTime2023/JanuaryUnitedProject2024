@@ -3,5 +3,9 @@
     "demoqaurl": "https://demoqa.com/login",
     "username": "TestUser",
     "password": "Password01!"
+  },
+  "userCredential": {
+    "Name": "Joe",
+    "Surname": "Eazzy"
   }
 }
