@@ -12,45 +12,42 @@ namespace JanuaryUnitedProject2024.Hooks;
 public class HooksPage : MyObjects
 {
     public ReadFromJs js = new ReadFromJs(); 
+
     [SetUp]
     public void Setup()
     {
-        driver = ChooseBrowser(browserType.Chrome);
-        //driver.Navigate().GoToUrl(Enviroment.url);
-        driver.Navigate().GoToUrl(js.GetData("env:demoqaurl2"));
-        driver.Manage().Timeouts().ImplicitWait =
-            TimeSpan.FromSeconds(double.Parse(Enviroment.TimeOut));
-        driver.Manage().Timeouts().PageLoad =
-            TimeSpan.FromSeconds(double.Parse(Enviroment.TimeOut));
-        driver.Manage().Timeouts().AsynchronousJavaScript =
-            TimeSpan.FromSeconds(double.Parse(Enviroment.TimeOut));
+        _driver = CheckDriver(browserType.Chrome);
     }
 
     public IWebDriver ChooseBrowser(browserType browserType)
     {
         return browserType == browserType.Chrome
-            ? driver = new ChromeDriver(new CustomMethods().MaximizeChromeBrowser())
+            ? _driver = new ChromeDriver(new CustomMethods().MaximizeChromeBrowser())
             : browserType == browserType.FireFox
-            ? driver = new FirefoxDriver()
+            ? _driver = new FirefoxDriver()
             : browserType == browserType.Edge
-            ? driver = new EdgeDriver()
+            ? _driver = new EdgeDriver()
             : throw new Exception("No such browser exist");
-    }         
+    }
+
+    public IWebDriver CheckDriver(browserType browserType) =>
+        _driver! == null ? ChooseBrowser(browserType) : _driver;
 
     [TearDown]
     public void TearDown() 
     {
-        if (driver != null)
+        if (_driver != null)
         {
-            driver.Quit();
+            _driver.Quit();
         }
-        driver = null;
+        _driver = null;
     }
 
     public static IEnumerable<TestCaseData> Mydata()
     {
         string[] datas =  { 
-            "https://www.automationexercise.com/login","20","Test010@test.com","Password01!"};
+            "https://www.automationexercise.com/login",
+            "20","Test010@test.com","Password01!"};
 
         yield return new TestCaseData(datas);
     }

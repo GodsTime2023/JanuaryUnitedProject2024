@@ -2,6 +2,7 @@
   "env": {
     "demoqaurl": "https://demoqa.com/login",
     "demoqaurl2": "https://demoqa.com/",
+    "automationpractice": "https://www.automationexercise.com/login",
     "username": "TestUser",
     "password": "Password01!"
   },
